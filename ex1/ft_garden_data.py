@@ -5,18 +5,19 @@ class Plant:
         self.height = height
         self.age = age
 
-
-def ft_garden_data(name: str, height: int, age: int) -> None:
-    plant = Plant(name, height, age)
-    print(plant.name.capitalize(), ": ",
-          plant.height, "cm, ", plant.age, " days old", sep="")
+    def show(self) -> None:
+        print(self.name.capitalize(), ": ",
+              self.height, "cm, ", self.age, " days old", sep="")
 
 
 def main() -> None:
     print("=== Garden Plant Registry ===")
-    ft_garden_data("rose", 5, 24)
-    ft_garden_data("poppy", 49, 10)
-    ft_garden_data("violet", 23, 16)
+    p1 = Plant("rose", 5, 24)
+    p1.show()
+    p2 = Plant("poppy", 49, 10)
+    p2.show()
+    p3 = Plant("violet", 23, 16)
+    p3.show()
 
 
 if __name__ == "__main__":
