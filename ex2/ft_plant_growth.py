@@ -4,10 +4,11 @@ class Plant:
         self.name = name
         self.height = height
         self.days = days
+        self.original_height = height
 
     def show(self) -> None:
         print(self.name.capitalize(), ": ",
-              self.height, "cm, ", self.days, " days old", sep="")
+              round(self.height, 1), "cm, ", self.days, " days old", sep="")
 
     def grow(self) -> None:
         size_increment = round(self.height / self.days, 1)
@@ -20,15 +21,13 @@ class Plant:
 def main() -> None:
     print("=== Garden Plant Growth ===")
     p1 = Plant("Rose", 25, 30)
-    p1.show()
-    p1.grow()
-    p1.age()
-    print("=== Day 1 ===")
-    p1.show()
-    p1.grow()
-    p1.age()
-    print("=== Day 2 ===")
-    p1.show()
+    for day in range(1, 8):
+        print("=== Day", day, "===")
+        p1.grow()
+        p1.age()
+        p1.show()
+    print("Growth this week: ",
+          round(p1.height - p1.original_height, 1), "cm", sep="")
 
 
 if __name__ == "__main__":
