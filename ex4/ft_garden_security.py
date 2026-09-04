@@ -2,9 +2,18 @@
 class Plant:
     def __init__(self, name: str, height: float, days: int) -> None:
         self._name = name
-        self._height = height
-        self._days = days
-        self._original_height = height
+        if height > 0:
+            self._height = height
+            self._original_height = height
+        else:
+            self._height = 0
+            self._original_height = 0
+            print("Height must be equal or greater than 0")
+        if days > 0 and days < 36500:
+            self._days = days
+        else:
+            print("Age must be equal or greater than 0 and below 100 years")
+            self._days = 0
 
     def show(self) -> None:
         print(self._name.capitalize(), ": ", round(self.get_height(), 1), "cm, ",
@@ -27,7 +36,7 @@ class Plant:
         if new_height > 0:
             self._height = new_height
         else:
-
+            print("Height update rejected")
 
     def set_age(self, new_age: int) -> None:
         if new_age > 0 and new_age < 36500:
@@ -38,7 +47,7 @@ class Plant:
 
 def main() -> None:
     print("===  Plant Factory Output ===")
-    p1 = Plant("Rose", 25, 30)
+    p1 = Plant("Rose", -29, -1)
     p1.age()
     p1.grow()
     p1.show()
