@@ -2,14 +2,14 @@
 class Plant:
     def __init__(self, name: str, height: float, days: int) -> None:
         self._name = name
-        if height > 0:
+        if height >= 0:
             self._height = height
             self._original_height = height
         else:
             self._height = 0
             self._original_height = 0
             print("Height must be equal or greater than 0")
-        if days > 0 and days < 36500:
+        if days >= 0 and days <= 36500:
             self._days = days
         else:
             print("Age must be equal or greater than 0 and below 100 years")
@@ -37,7 +37,7 @@ class Plant:
         return self._name.capitalize()
 
     def set_height(self, new_height: float) -> None:
-        if new_height > 0:
+        if new_height >= 0:
             self._height = new_height
             print("Height updated: ", self.get_height(), "cm", sep="")
         else:
@@ -45,7 +45,7 @@ class Plant:
             print("Height update rejected")
 
     def set_age(self, new_age: int) -> None:
-        if new_age > 0 and new_age < 36500:
+        if new_age >= 0 and new_age <= 36500:
             self._days = new_age
             print("Age updated: ", self.get_age(), " days", sep="")
         else:

@@ -2,14 +2,14 @@
 class Plant:
     def __init__(self, name: str, height: float, days: int) -> None:
         self._name = name
-        if height > 0:
+        if height >= 0:
             self._height = height
             self._original_height = height
         else:
             self._height = 0
             self._original_height = 0
             print("Height must be equal or greater than 0")
-        if days > 0 and days < 36500:
+        if days >= 0 and days <= 36500:
             self._days = days
         else:
             print("Age must be equal or greater than 0 and below 100 years")
@@ -37,7 +37,7 @@ class Plant:
         return self._name
 
     def set_height(self, new_height: float) -> None:
-        if new_height > 0:
+        if new_height >= 0:
             self._height = new_height
             print("Height updated: ", self.get_height(), "cm", sep="")
         else:
@@ -45,7 +45,7 @@ class Plant:
             print("Height update rejected")
 
     def set_age(self, new_age: int) -> None:
-        if new_age > 0 and new_age < 36500:
+        if new_age >= 0 and new_age <= 36500:
             self._days = new_age
             print("Age updated: ", self.get_age(), " days", sep="")
         else:
@@ -60,7 +60,9 @@ class Plant:
 
 class Flower(Plant):
     is_bloomed = False
-    def __init__(self, name: str, height: float, days: int, color: str) -> None:
+
+    def __init__(self, name: str, height: float, days: int,
+                 color: str) -> None:
         super().__init__(name, height, days)
         self.color = color
 
@@ -71,21 +73,22 @@ class Flower(Plant):
             print("", self.get_name().capitalize(), "is blooming beautifully!")
         else:
             print("", self.get_name().capitalize(), "has not bloomed yet")
-    
+
     def bloom(self) -> None:
         print("[asking the", self.get_name(), "to bloom]")
         self.is_bloomed = True
 
 
 class Tree(Plant):
-    def __init__(self, name: str, height: float, days: int, trunk_diameter: float) -> None:
+    def __init__(self, name: str, height: float,
+                 days: int, trunk_diameter: float) -> None:
         super().__init__(name, height, days)
         self.trunk_diameter = trunk_diameter
 
     def show(self) -> None:
         super().show()
         print(" Trunk diameter: ", self.trunk_diameter, "cm", sep="")
-        
+
     def produce_shade(self) -> None:
         print("[asking the", self.get_name(), "to produce shade]")
         print("Tree ", self.get_name().capitalize(),
@@ -95,10 +98,12 @@ class Tree(Plant):
 
 
 class Vegetable(Plant):
-    nutritional_value = 0
-    def __init__(self, name: str, height: float, days: int, harvest_season: str) -> None:
-            super().__init__(name, height, days)
-            self.harvest_season = harvest_season
+    nutritional_value = 0.0
+
+    def __init__(self, name: str, height: float,
+                 days: int, harvest_season: str) -> None:
+        super().__init__(name, height, days)
+        self.harvest_season = harvest_season
 
     def show(self) -> None:
         super().show()
@@ -113,6 +118,7 @@ class Vegetable(Plant):
         size_increment = round(self.get_height() / self.get_age(), 1)
         self._height = self.get_height() + size_increment
         self.nutritional_value += 0.5
+
 
 def main() -> None:
     print("=== Garden Plant Types ===")
@@ -133,6 +139,7 @@ def main() -> None:
         p3.age()
         p3.grow()
     p3.show()
+
 
 if __name__ == "__main__":
     main()
